@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<entities xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:noNamespaceSchemaLocation="http://moqui.org/xsd/entity-definition-3.xsd">
+    <!-- Product Entity -->
+    <entity entity-name="Product" package="assignment.product">
+        <field name="productId" type="id" is-pk="true"/>
+        <field name="productName" type="text-medium"/>
+        <field name="productTypeEnumId" type="id"/>
+        <field name="isVirtual" type="text-indicator"/>
+        <field name="isVariant" type="text-indicator"/>
+        <relationship type="one" title="ProductType" related="moqui.basic.Enumeration">
+            <key-map field-name="productTypeEnumId"/>
+        </relationship>
+        <relationship type="many" related="assignment.product.ProductAssoc">
+            <key-map field-name="productId"/>
+        </relationship>
+        <relationship type="many" title="To" related="assignment.product.ProductAssoc">
+            <key-map field-name="productId" related="toProductId"/>
+        </relationship>
+        <relationship type="many" related="assignment.product.ProductContent">
+            <key-map field-name="productId"/>
+        </relationship>
+        <relationship type="many" related="assignment.product.ProductDimension">
+            <key-map field-name="productId"/>
+        </relationship>
+        <relationship type="many" related="assignment.product.ProductPrice">
+            <key-map field-name="productId"/>
+        </relationship>
+        <relationship type="many" related="assignment.product.ProductFeature">
+            <key-map field-name="productId"/>
+        </relationship>
+        <seed-data>
+            <moqui.basic.EnumerationType description="Product Type" enumTypeId="ProductType">
+                <moqui.basic.Enumeration description="Asset (Good)" enumId="Asset"/>
+                <moqui.basic.Enumeration description="Digital" enumId="Digital"/>
+                <moqui.basic.Enumeration description="Asset Use" enumId="AssetUse"/>
+                <moqui.basic.Enumeration description="Service" enumId="PtService"/>
+                <moqui.basic.Enumeration description="Virtual (with variants)" enumId="Virtual"/>
+                <moqui.basic.Enumeration description="Configurable Good" enumId="Configurable"/>
+                <moqui.basic.Enumeration enumId="Finished good" description="Finished Good"/>
+                <moqui.basic.Enumeration enumId="Marketing package" description="Marketing Package"/>
+            </moqui.basic.EnumerationType>
+        </seed-data>
+    </entity>
+
+    <!-- Product Content Entity -->
+    <entity entity-name="ProductContent" package="assignment.product">
+        <field name="productContentId" type="id" is-pk="true"/>
+        <field name="productId" type="id" not-null="true"/>
+        <field name="productContentTypeEnumId" type="id"/>
+        <field name="contentLocation" type="text-long"/>
+        <relationship type="one" related="Product">
+            <key-map field-name="productId"/>
+        </relationship>
+        <relationship type="one" title="ProductContentType" related="moqui.basic.Enumeration">
+            <key-map field-name="productContentTypeEnumId"/>
+        </relationship>
+        <seed-data>
+            <moqui.basic.EnumerationType description="Product Content Type" enumTypeId="ProductContentType">
+                <moqui.basic.Enumeration description="Image" enumId="Image"/>
+                <moqui.basic.Enumeration description="Description" enumId="Description"/>
+                <moqui.basic.Enumeration description="Delivery Info" enumId="DeliveryInfo"/>
+                <moqui.basic.Enumeration description="Digital Download" enumId="Download"/>
+                <moqui.basic.Enumeration description="Directions" enumId="Directions"/>
+                <moqui.basic.Enumeration description="Fulfillment Email" enumId="Email"/>
+                <moqui.basic.Enumeration description="Frequently Asked Questions" enumId="FAQ"/>
+                <moqui.basic.Enumeration description="Ingredients" enumId="Ingredients"/>
+            </moqui.basic.EnumerationType>
+        </seed-data>
+    </entity>
+
+    <!-- Product Price Entity -->
+    <entity entity-name="ProductPrice" package="assignment.product">
+        <field name="productId" type="id" not-null="true"/>
+        <field name="productPriceId" type="id" is-pk="true"/>
+        <field name="priceTypeEnumId" type="id"/>
+        <field name="price" type="currency-precise"/>
+        <relationship type="one" related="Product">
+            <key-map field-name="productId"/>
+        </relationship>
+        <relationship type="one" related="moqui.basic.Enumeration" title="ProductPriceType">
+            <key-map field-name="priceTypeEnumId"/>
+        </relationship>
+        <seed-data>
+            <moqui.basic.EnumerationType description="Price Type" enumTypeId="ProductPriceType">
+                <moqui.basic.Enumeration description="List Price" enumId="List"/>
+                <moqui.basic.Enumeration description="Current Price" enumId="Current"/>
+                <moqui.basic.Enumeration description="Average Cost" enumId="Average"/>
+                <moqui.basic.Enumeration description="Minimum Price" enumId="Minimum"/>
+                <moqui.basic.Enumeration description="Maximum Price" enumId="Maximum"/>
+                <moqui.basic.Enumeration description="Promotional Price" enumId="Promotional"/>
+                <moqui.basic.Enumeration description="Competitive Price" enumId="Competitive"/>
+                <moqui.basic.Enumeration description="Wholesale Price" enumId="Wholesale"/>
+                <moqui.basic.Enumeration description="Special Promo Price" enumId="SpecialPromo"/>
+            </moqui.basic.EnumerationType>
+        </seed-data>
+    </entity>
+
+    <!-- Product Dimension Entity -->
+    <entity entity-name="ProductDimension" package="assignment.product">
+        <field name="productId" type="id" is-pk="true"/>
+        <field name="dimensionTypeEnumId" type="id" is-pk="true"/>
+        <field name="dimensionValue" type="number-decimal" is-pk="true"/>
+        <field name="valueUomId" type="id"/>
+        <relationship type="one" related="assignment.product.Product"/>
+        <relationship type="one" related="moqui.basic.Enumeration" title="ProductDimensionType">
+            <key-map field-name="dimensionTypeEnumId"/>
+        </relationship>
+        <seed-data>
+            <moqui.basic.EnumerationType description="Dimension Type" enumTypeId="ProductDimensionType">
+                <moqui.basic.Enumeration enumId="Weight" description="Weight"/>
+                <moqui.basic.Enumeration enumId="Height" description="Height"/>
+                <moqui.basic.Enumeration enumId="Depth" description="Depth"/>
+                <moqui.basic.Enumeration enumId="Size" description="Size"/>
+            </moqui.basic.EnumerationType>
+        </seed-data>
+    </entity>
+
+    <!-- Product Association Entity -->
+    <entity entity-name="ProductAssoc" package="assignment.product">
+        <field name="productId" type="id" is-pk="true"/>
+        <field name="toProductId" type="id" is-pk="true"/>
+        <field name="productAssocTypeEnumId" type="id" is-pk="true"/>
+        <field name="fromDate" type="date" is-pk="true"/>
+        <field name="thruDate" type="date"/>
+
+        <relationship type="one" related="assignment.product.Product">
+            <key-map field-name="productId"/>
+        </relationship>
+        <relationship type="one" title="To" related="assignment.product.Product">
+            <key-map field-name="toProductId"/>
+        </relationship>
+        <relationship type="one" title="ProductAssocType" related="moqui.basic.Enumeration" short-alias="type">
+            <key-map field-name="productAssocTypeEnumId"/>
+        </relationship>
+
+        <seed-data>
+            <moqui.basic.EnumerationType description="Product Association Type" enumTypeId="ProductAssocType">
+                <moqui.basic.Enumeration description="Variant" enumId="Variant"/>
+                <moqui.basic.Enumeration description="Cross-Sell (Complementary)" enumId="CrossSell"/>
+                <moqui.basic.Enumeration description="Marketing Package" enumId="MarketPackage"/>
+                <moqui.basic.Enumeration description="Equivalent or Substitute" enumId="Equivalent"/>
+                <moqui.basic.Enumeration description="Accessory" enumId="Accessory"/>
+                <moqui.basic.Enumeration description="Add On For" enumId="AddOn"/>
+                <moqui.basic.Enumeration description="Repair Service" enumId="RepairService"/>
+            </moqui.basic.EnumerationType>
+        </seed-data>
+    </entity>
+
+    <!--Product Feature-->
+    <entity entity-name="ProductFeature" package="assignment.product" >
+        <field name="productFeatureId" type="id" is-pk="true"/>
+        <field name="productFeatureTypeEnumId" type="id"/>
+        <relationship type="one" title="ProductFeatureType" related="moqui.basic.Enumeration">
+            <key-map field-name="productFeatureTypeEnumId"/>
+        </relationship>
+        <seed-data>
+            <moqui.basic.EnumerationType description="Product Feature Type" enumTypeId="ProductFeatureType">
+                <moqui.basic.Enumeration description="Amount" enumId="Amount"/>
+                <moqui.basic.Enumeration description="Brand" enumId="Brand"/>
+                <moqui.basic.Enumeration description="Color" enumId="Color"/>
+                <moqui.basic.Enumeration description="Memory" enumId="Dimension"/>
+                <moqui.basic.Enumeration description="Size" enumId="Size"/>
+                <moqui.basic.Enumeration description="Warranty" enumId="Warranty"/>
+            </moqui.basic.EnumerationType>
+        </seed-data>
+    </entity>
+
+    <!--Product Feature Appl-->
+    <entity entity-name="ProductFeatureAppl" package="assignment.product">
+        <field name="productId" type="id" is-pk="true"/>
+        <field name="productFeatureId" type="id" is-pk="true"/>
+        <field name="fromDate" type="date" is-pk="true"/>
+        <field name="thruDate" type="date"/>
+        <field name="applTypeEnumId" type="id"/>
+        <relationship type="one" related="assignment.product.Product"/>
+        <relationship type="one" related="assignment.product.ProductFeature"/>
+
+        <relationship type="one" title="ProductFeatureApplType" related="moqui.basic.Enumeration">
+            <key-map field-name="applTypeEnumId"/>
+        </relationship>
+        <seed-data>
+            <moqui.basic.EnumerationType description="Product feature Application type" enumTypeId="ProductFeatureApplType">
+                <moqui.basic.Enumeration description="Selectable" enumId="Selectable"/>
+                <moqui.basic.Enumeration description="Standard" enumId="Standard"/>
+                <moqui.basic.Enumeration description="Distinguishing" enumId="Distinguishing"/>
+                <moqui.basic.Enumeration description="Optional" enumId="Optional"/>
+            </moqui.basic.EnumerationType>
+        </seed-data>
+    </entity>
+
+    <!--Product Category-->
+    <entity entity-name="ProductCategory" package="assignment.product" short-alias="categories">
+        <field name="productCategoryId" type="id" is-pk="true"/>
+        <field name="productCategoryTypeEnumId" type="id"/>
+        <field name="categoryName" type="text-medium"/>
+        <field name="description" type="text-medium"/>
+
+        <relationship type="one" title="ProductCategoryType" related="moqui.basic.Enumeration">
+            <key-map field-name="productCategoryTypeEnumId"/>
+        </relationship>
+
+        <seed-data>
+            <moqui.basic.EnumerationType description="Product Category Type" enumTypeId="ProductCategoryType">
+                <moqui.basic.Enumeration description="Catalog" enumId="Catalog" />
+                <moqui.basic.Enumeration description="Industry" enumId="Industry"/>
+                <moqui.basic.Enumeration description="Materials" enumId="Materials"/>
+                <moqui.basic.Enumeration description="Quick Add" enumId="QuickAdd"/>
+                <moqui.basic.Enumeration description="Search" enumId="Search"/>
+                <moqui.basic.Enumeration description="Gift Card" enumId="GiftCard"/>
+                <moqui.basic.Enumeration description="Best Selling" enumId="BestSelling"/>
+                <moqui.basic.Enumeration description="Inventory Group" enumId="InventoryGroup"/>
+            </moqui.basic.EnumerationType>
+        </seed-data>
+    </entity>
+
+    <!--Product category Member-->
+    <entity entity-name="ProductCategoryMember" package="assignment.product">
+        <field name="productId" type="id" is-pk="true"/>
+        <field name="productCategoryId" type="id" is-pk="true"/>
+        <field name="fromDate" type="date" is-pk="true"/>
+        <field name="thru" type="date"/>
+        <relationship type="one" related="assignment.product.Product"/>
+        <relationship type="one" related="assignment.product.ProductCategory"/>
+    </entity>
+</entities>

@@ -1,0 +1,152 @@
+[
+  { "_dataType": "demo" },
+  {
+    "_entity": "assignment.product.Product",
+    "productId": "PROD10000",
+    "productName": "Smartphone",
+    "productTypeEnumId": "Finished good",
+    "isVirtual": "Y",
+    "isVariant": "N"
+  },
+  {
+    "_entity": "assignment.product.Product",
+    "productId": "PROD10001",
+    "productName": "Smartphone-128GB",
+    "productTypeEnumId": "Finished good",
+    "isVirtual": "N",
+    "isVariant": "Y"
+  },
+  {
+    "_entity": "assignment.product.Product",
+    "productId": "PROD10002",
+    "productName": "Smartphone-256GB",
+    "productTypeEnumId": "Finished good",
+    "isVirtual": "N",
+    "isVariant": "Y"
+  },
+  {
+    "_entity": "assignment.product.Product",
+    "productId": "PROD20000",
+    "productName": "Laptop",
+    "productTypeEnumId": "Finished good",
+    "isVirtual": "Y",
+    "isVariant": "N"
+  },
+  {
+    "_entity": "assignment.product.Product",
+    "productId": "PROD20001",
+    "productName": "Laptop-BLACK",
+    "productTypeEnumId": "Finished good",
+    "isVirtual": "N",
+    "isVariant": "Y"
+  },
+  {
+    "_entity": "assignment.product.Product",
+    "productId": "PROM001",
+    "productName": "Laptop-Phone-Promotional-Package",
+    "productTypeEnumId": "Marketing package",
+    "isVirtual": "N",
+    "isVariant": "Y"
+
+  },
+  {
+    "_entity": "assignment.product.ProductContent",
+    "productContentId": "CON100",
+    "productId": "PROD10000",
+    "productContentTypeEnumId": "Image",
+    "contentLocation": "/images/smartphone.jpg"
+  },
+  {
+    "_entity": "assignment.product.ProductContent",
+    "productContentId": "CON200",
+    "productId": "PROD10000",
+    "productContentTypeEnumId": "Description",
+    "contentLocation": "/descriptions/smartphone_en.txt"
+  },
+  {
+    "_entity": "assignment.product.ProductContent",
+    "productContentId": "CON300",
+    "productId": "PROD20000",
+    "productContentTypeEnumId": "Image",
+    "contentLocation": "/images/laptop.jpg"
+  },
+  {
+    "_entity": "assignment.product.ProductDimension",
+    "productId": "PROD10000",
+    "dimensionTypeEnumId": "Weight",
+    "dimensionValue": 6.60,
+    "valueUomId": "OUNCES"
+  },
+  {
+    "_entity": "assignment.product.ProductDimension",
+    "productId": "PROD10001",
+    "dimensionTypeEnumId": "Weight",
+    "dimensionValue": 2.5,
+    "valueUomId": "LBS"
+  },
+  {
+    "_entity": "assignment.product.ProductAssoc",
+    "productId": "PROD10000",
+    "toProductId": "PROD10001",
+    "productAssocTypeEnumId": "Variant",
+    "fromDate": "2023-01-01"
+  },
+  {
+    "_entity": "assignment.product.ProductAssoc",
+    "productId": "PROD10000",
+    "toProductId": "PROD10002",
+    "productAssocTypeEnumId": "Variant",
+    "fromDate": "2023-01-01"
+  },
+  {
+    "_entity": "assignment.product.ProductFeature",
+    "productFeatureId": "128GB",
+    "productFeatureTypeEnumId": "Memory"
+  },
+  {
+    "_entity": "assignment.product.ProductFeature",
+    "productFeatureId": "256GB",
+    "productFeatureTypeEnumId": "Memory"
+  },
+  {
+    "_entity": "assignment.product.ProductFeature",
+    "productFeatureId": "BLACK",
+    "productFeatureTypeEnumId": "Color"
+  },
+  {
+    "_entity": "assignment.product.ProductFeatureAppl",
+    "productId": "PROD10000",
+    "productFeatureId": "128GB",
+    "fromDate": "2023-06-01",
+    "applTypeEnumId": "Selectable"
+  },
+  {
+    "_entity": "assignment.product.ProductFeatureAppl",
+    "productId": "PROD10000",
+    "productFeatureId": "256GB",
+    "fromDate": "2023-06-01",
+    "applTypeEnumId": "Selectable"
+  },
+  {
+    "_entity": "assignment.product.ProductFeatureAppl",
+    "productId": "PROD20000",
+    "productFeatureId": "BLACK",
+    "fromDate": "2023-09-01",
+    "applTypeEnumId": "Selectable"
+  },
+  {
+    "_entity": "assignment.product.ProductCategory",
+    "productCategoryId": "BROWSE_ROOT",
+    "productCategoryTypeId": "Catalog",
+    "categoryName": "Browse Root",
+    "description": "Category"
+  },
+  {
+    "_entity": "assignment.product.ProductCategoryMember",
+    "productId": "PROD10000",
+    "productCategoryId": "BROWSE_ROOT",
+    "fromDate": "2023-01-01"
+  }
+]
+
+
