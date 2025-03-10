@@ -148,7 +148,7 @@
     </entity>
 
     <!--Product Feature-->
-    <entity entity-name="ProductFeature" package="assignment.product" >
+    <entity entity-name="ProductFeature" package="assignment.product">
         <field name="productFeatureId" type="id" is-pk="true"/>
         <field name="productFeatureTypeEnumId" type="id"/>
         <relationship type="one" title="ProductFeatureType" related="moqui.basic.Enumeration">
@@ -173,12 +173,13 @@
         <field name="fromDate" type="date" is-pk="true"/>
         <field name="thruDate" type="date"/>
         <field name="applTypeEnumId" type="id"/>
+
         <relationship type="one" related="assignment.product.Product"/>
         <relationship type="one" related="assignment.product.ProductFeature"/>
-
         <relationship type="one" title="ProductFeatureApplType" related="moqui.basic.Enumeration">
             <key-map field-name="applTypeEnumId"/>
         </relationship>
+
         <seed-data>
             <moqui.basic.EnumerationType description="Product feature Application type" enumTypeId="ProductFeatureApplType">
                 <moqui.basic.Enumeration description="Selectable" enumId="Selectable"/>
@@ -202,7 +203,7 @@
 
         <seed-data>
             <moqui.basic.EnumerationType description="Product Category Type" enumTypeId="ProductCategoryType">
-                <moqui.basic.Enumeration description="Catalog" enumId="Catalog" />
+                <moqui.basic.Enumeration description="Catalog" enumId="Catalog"/>
                 <moqui.basic.Enumeration description="Industry" enumId="Industry"/>
                 <moqui.basic.Enumeration description="Materials" enumId="Materials"/>
                 <moqui.basic.Enumeration description="Quick Add" enumId="QuickAdd"/>
