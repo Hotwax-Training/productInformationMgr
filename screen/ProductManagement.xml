@@ -15,6 +15,8 @@
         <service-call name="delete#Product"/>
         <default-response url="."/>
     </transition>
+
+
     <transition name="createProductContent">
         <service-call name="create#ProductContent"/>
         <default-response url="."/>
@@ -27,6 +29,8 @@
         <service-call name="delete#ProductContent"/>
         <default-response url="."/>
     </transition>
+
+
     <transition name="createProductPrice">
         <service-call name="create#ProductPrice"/>
         <default-response url="."/>
@@ -39,6 +43,8 @@
         <service-call name="delete#ProductPrice"/>
         <default-response url="."/>
     </transition>
+
+
     <transition name="createProductDimension">
         <service-call name="create#ProductDimension"/>
         <default-response url="."/>
@@ -47,6 +53,12 @@
         <service-call name="update#ProductDimension"/>
         <default-response url="."/>
     </transition>
+    <transition name="deleteProductDimension">
+        <service-call name="delete#ProductDimension"/>
+        <default-response url="."/>
+    </transition>
+
+
     <transition name="createProductAssoc">
         <service-call name="create#ProductAssoc"/>
         <default-response url="."/>
@@ -55,6 +67,12 @@
         <service-call name="update#ProductAssoc"/>
         <default-response url="."/>
     </transition>
+    <transition name="deleteProductAssoc">
+        <service-call name="delete#ProductAssoc"/>
+        <default-response url="."/>
+    </transition>
+
+
     <transition name="createProductFeature">
         <service-call name="create#ProductFeature"/>
         <default-response url="."/>
@@ -63,6 +81,12 @@
         <service-call name="update#ProductFeature"/>
         <default-response url="."/>
     </transition>
+    <transition name="deleteProductFeature">
+        <service-call name="delete#ProductFeature"/>
+        <default-response url="."/>
+    </transition>
+
+
     <transition name="createProductFeatureAppl">
         <service-call name="create#ProductFeatureAppl"/>
         <default-response url="."/>
@@ -71,6 +95,12 @@
         <service-call name="update#ProductFeatureAppl"/>
         <default-response url="."/>
     </transition>
+    <transition name="deleteProductFeatureAppl">
+        <service-call name="delete#ProductPrice"/>
+        <default-response url="."/>
+    </transition>
+
+
     <transition name="createProductCategory">
         <service-call name="create#ProductCategory"/>
         <default-response url="."/>
@@ -79,6 +109,12 @@
         <service-call name="update#ProductCategory"/>
         <default-response url="."/>
     </transition>
+    <transition name="deleteProductCategory">
+        <service-call name="delete#ProductCategory"/>
+        <default-response url="."/>
+    </transition>
+
+
     <transition name="createProductCategoryMember">
         <service-call name="create#ProductCategoryMember"/>
         <default-response url="."/>
@@ -87,7 +123,13 @@
         <service-call name="update#ProductCategoryMember"/>
         <default-response url="."/>
     </transition>
+    <transition name="deleteProductCategoryMember">
+        <service-call name="delete#ProductCategoryMember"/>
+        <default-response url="."/>
+    </transition>
+
     <widgets>
+
         <label type="h2" text="Product"/>
         <container-dialog id="P1" button-text="Create Product">
             <form-single name="CreateProduct" transition="createProduct">
@@ -103,7 +145,7 @@
         <container-dialog id="P1" button-text="Update Product">
             <form-single name="UpdateProduct" transition="updateProduct">
                 <auto-fields-entity entity-name="assignment.product.Product" field-type="edit"/>
-                <field name="submitButton">
+                <field name="submit">
                     <default-field title="Update">
                         <submit/>
                     </default-field>
@@ -113,12 +155,12 @@
 
         <container-dialog id="P1" button-text="Delete Product">
             <form-single name="DeleteProduct" transition="deleteProduct">
-                <field name="productId" >
+                <field name="productId">
                     <default-field>
-                        <text-line size="10" />
+                        <text-line size="10"/>
                     </default-field>
                 </field>
-                <field name="submitButton">
+                <field name="submit">
                     <default-field title="Delete">
                         <submit/>
                     </default-field>
@@ -126,40 +168,43 @@
             </form-single>
         </container-dialog>
 
+
         <label type="h2" text="Product Content"/>
         <container-dialog id="PC1" button-text="Create Product Content">
             <form-single name="CreateProductContent" transition="createProductContent">
                 <auto-fields-entity entity-name="assignment.product.ProductContent" field-type="edit" include="nonpk"/>
-                <field name="submitButton">
+                <field name="submit">
                     <default-field title="Create">
                         <submit/>
                     </default-field>
                 </field>
             </form-single>
         </container-dialog>
+
         <container-dialog id="PC1" button-text="Update Product Content">
             <form-single name="UpdateProductContent" transition="updateProductContent">
-                <auto-fields-entity entity-name="assignment.product.ProductContent" field-type="edit" />
-                <field name="submitButton">
+                <auto-fields-entity entity-name="assignment.product.ProductContent" field-type="edit"/>
+                <field name="submit">
                     <default-field title="update">
                         <submit/>
                     </default-field>
                 </field>
             </form-single>
         </container-dialog>
+
         <container-dialog id="PC1" button-text="Delete Product Content">
             <form-single name="DeleteProductContent" transition="deleteProductContent">
-                <field name="productId" >
+                <field name="productId">
                     <default-field>
-                        <text-line size="10" />
+                        <text-line size="10"/>
                     </default-field>
                 </field>
                 <field name="productContentId">
                     <default-field>
-                        <text-line size="10" />
+                        <text-line size="10"/>
                     </default-field>
                 </field>
-                <field name="submitButton">
+                <field name="submit">
                     <default-field title="Delete">
                         <submit/>
                     </default-field>
@@ -172,7 +217,7 @@
         <container-dialog id="PP1" button-text="Create Product Price">
             <form-single name="CreateProductPrice" transition="createProductPrice">
                 <auto-fields-entity entity-name="assignment.product.ProductPrice" field-type="edit" include="nonpk"/>
-                <field name="submitButton">
+                <field name="submit">
                     <default-field title="create">
                         <submit/>
                     </default-field>
@@ -182,8 +227,8 @@
 
         <container-dialog id="PP2" button-text="Update Product Price">
             <form-single name="UpdateProductPrice" transition="updateProductPrice">
-                <auto-fields-entity entity-name="assignment.product.ProductPrice" field-type="edit" />
-                <field name="submitButton">
+                <auto-fields-entity entity-name="assignment.product.ProductPrice" field-type="edit"/>
+                <field name="submit">
                     <default-field title="update">
                         <submit/>
                     </default-field>
@@ -193,17 +238,17 @@
 
         <container-dialog id="PC1" button-text="Delete Product Price">
             <form-single name="DeleteProductPrice" transition="deleteProductPice">
-                <field name="productId" >
+                <field name="productId">
                     <default-field>
-                        <text-line size="10" />
+                        <text-line size="10"/>
                     </default-field>
                 </field>
                 <field name="productPriceId">
                     <default-field>
-                        <text-line size="10" />
+                        <text-line size="10"/>
                     </default-field>
                 </field>
-                <field name="submitButton">
+                <field name="submit">
                     <default-field title="Delete">
                         <submit/>
                     </default-field>
@@ -211,11 +256,12 @@
             </form-single>
         </container-dialog>
 
+
         <label type="h2" text="Product Dimension"/>
         <container-dialog id="PD1" button-text="Create Product Dimension">
             <form-single name="CreateProductDimension" transition="createProductDimension">
                 <auto-fields-entity entity-name="assignment.product.ProductDimension" field-type="edit"/>
-                <field name="submitButton">
+                <field name="submit">
                     <default-field title="create">
                         <submit/>
                     </default-field>
@@ -226,29 +272,51 @@
         <container-dialog id="PD1" button-text="Update Product Dimension">
             <form-single name="UpdateProductDimension" transition="updateProductDimension">
                 <auto-fields-entity entity-name="assignment.product.ProductDimension" field-type="edit"/>
-                <field name="submitButton">
+                <field name="submit">
                     <default-field title="update">
                         <submit/>
                     </default-field>
                 </field>
             </form-single>
         </container-dialog>
+
+        <container-dialog id="PD1" button-text="Delete Product Dimension">
+            <form-single name="DeleteProductDimension" transition="deleteProductDimension">
+                <field name="productId">
+                    <default-field>
+                        <text-line size="10"/>
+                    </default-field>
+                </field>
+                <field name="dimensionTypeEnumId">
+                    <default-field title="dimensionTypeEnumId">
+                        <text-line/>
+                    </default-field>
+                </field>
+                <field name="submit">
+                    <default-field title="Delete">
+                        <submit/>
+                    </default-field>
+                </field>
+            </form-single>
+        </container-dialog>
+
 
         <label text="Product Assoc" type="h2"/>
         <container-dialog id="PA1" button-text="Create Product Assoc">
             <form-single name="CreateProductAssoc" transition="createProductAssoc">
                 <auto-fields-entity entity-name="assignment.product.ProductAssoc" field-type="edit"/>
-                <field name="submitButton">
+                <field name="submit">
                     <default-field title="create">
                         <submit/>
                     </default-field>
                 </field>
             </form-single>
         </container-dialog>
+
         <container-dialog id="PA1" button-text="Update Product Assoc">
             <form-single name="UpdateProductAssoc" transition="updateProductAssoc">
                 <auto-fields-entity entity-name="assignment.product.ProductAssoc" field-type="edit"/>
-                <field name="submitButton">
+                <field name="submit">
                     <default-field title="update">
                         <submit/>
                     </default-field>
@@ -256,27 +324,70 @@
             </form-single>
         </container-dialog>
 
+        <container-dialog id="PA1" button-text="Delete Product Assoc">
+            <form-single name="DeleteProductAssoc" transition="deleteProductAssoc">
+                <field name="productId">
+                    <default-field>
+                        <text-line size="10"/>
+                    </default-field>
+                </field>
+                <field name="toProductId">
+                    <default-field>
+                        <text-line size="10"/>
+                    </default-field>
+                </field>
+                <field name="productAssocTypeEnumId">
+                    <default-field>
+                        <text-line size="10"/>
+                    </default-field>
+                </field>
+                <field name="submit">
+                    <default-field title="delete">
+                        <submit/>
+                    </default-field>
+                </field>
+            </form-single>
+        </container-dialog>
+
+
         <label text="Product Feature" type="h2"/>
         <container-dialog id="PF1" button-text="Create Product Feature">
             <form-single name="CreateProductFeature" transition="createProductFeature">
-                <auto-fields-entity entity-name="assignment.product.ProductFeature" field-type="edit" include="nonpk"/>
-                <field name="submitButton">
+                <auto-fields-entity entity-name="assignment.product.ProductFeature" field-type="edit"/>
+                <field name="submit">
                     <default-field title="create">
                         <submit/>
                     </default-field>
                 </field>
             </form-single>
         </container-dialog>
+
         <container-dialog id="PF1" button-text="Update Product Feature">
             <form-single name="UpdateProductFeature" transition="updateProductFeature">
                 <auto-fields-entity entity-name="assignment.product.ProductFeature" field-type="edit"/>
-                <field name="submitButton">
+                <field name="submit">
                     <default-field title="update">
                         <submit/>
                     </default-field>
                 </field>
             </form-single>
         </container-dialog>
+
+        <container-dialog id="PF1" button-text="Delete Product Feature">
+            <form-single name="DeleteProductFeature" transition="deleteProductFeature">
+                <field name="productFeatureId">
+                    <default-field title="productFeatureId">
+                        <text-line></text-line>
+                    </default-field>
+                </field>
+                <field name="submit">
+                    <default-field title="Delete">
+                        <submit/>
+                    </default-field>
+                </field>
+            </form-single>
+        </container-dialog>
+
 
         <label text="Product Feature Appl" type="h2"/>
         <container-dialog id="PFA1" button-text="Create Product Feature Appl">
@@ -301,9 +412,31 @@
             </form-single>
         </container-dialog>
 
+        <container-dialog id="PFA1" button-text="Delete Product Feature Appl">
+            <form-single name="DeleteProductFeatureAppl" transition="deleteProductFeatureAppl">
+                <!--                <field name="productId">-->
+                <!--                    <default-field title="productId">-->
+                <!--                        <text-line></text-line>-->
+                <!--                    </default-field>-->
+                <!--                </field>-->
+                <!--                <field name="productFeatureId">-->
+                <!--                    <default-field title="productFeatureId">-->
+                <!--                        <text-line></text-line>-->
+                <!--                    </default-field>-->
+                <!--                </field>-->
+                <auto-fields-entity entity-name="assignment.product.ProductFeatureAppl" field-type="edit"/>
+                <field name="submit">
+                    <default-field title="Delete">
+                        <submit/>
+                    </default-field>
+                </field>
+            </form-single>
+        </container-dialog>
+
+
         <label text="Product Category" type="h2"/>
         <container-dialog id="PCD1" button-text="Create Product Category">
-            <form-single name="CreateProductCategory" transition="productCategory">
+            <form-single name="CreateProductCategory" transition="createProductCategory">
                 <auto-fields-entity entity-name="assignment.product.ProductCategory" field-type="edit" include="nonpk"/>
                 <field name="submit">
                     <default-field title="create">
@@ -324,6 +457,22 @@
             </form-single>
         </container-dialog>
 
+        <container-dialog id="PCD1" button-text="Delete Product Category">
+            <form-single name="DeleteProductCategory" transition="deleteProductCategory">
+                <field name="productCategoryId">
+                    <default-field title="productCategoryId">
+                        <text-line></text-line>
+                    </default-field>
+                </field>
+                <field name="submit">
+                    <default-field title="Delete">
+                        <submit/>
+                    </default-field>
+                </field>
+            </form-single>
+        </container-dialog>
+
+
         <label text="Product Category Member" type="h2"/>
         <container-dialog id="PCM1" button-text="Create Product Category Member">
             <form-single name="CreateProductCategoryMember" transition="createProductCategoryMember">
@@ -337,7 +486,7 @@
         </container-dialog>
 
         <container-dialog id="PCM1" button-text="Update Product Category Member">
-            <form-single name="UpdateProductCategoryMember" transition="updateCategoryMember">
+            <form-single name="UpdateProductCategoryMember" transition="updateProductCategoryMember">
                 <auto-fields-entity entity-name="assignment.product.ProductCategoryMember" field-type="edit"/>
                 <field name="submit">
                     <default-field title="update">
@@ -346,6 +495,28 @@
                 </field>
             </form-single>
         </container-dialog>
+
+        <container-dialog id="PCM1" button-text="Delete Product Category Member">
+            <form-single name="DeleteProductCategoryMember" transition="deleteProductCategoryMember">
+                <field name="productId">
+                    <default-field title="productId">
+                        <text-line></text-line>
+                    </default-field>
+                </field>
+                <field name="productCategoryId">
+                    <default-field title="productCategoryId">
+                        <text-line></text-line>
+                    </default-field>
+                </field>
+                <field name="submit">
+                    <default-field title="Delete">
+                        <submit/>
+                    </default-field>
+                </field>
+            </form-single>
+        </container-dialog>
+
+
     </widgets>
 
 </screen>
